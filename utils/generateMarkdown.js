@@ -40,17 +40,23 @@ function generateMarkdown(data, renderLicence) {
   
   ## Installation
   
-  
+    * ${data.install}
 
   ## Usage
   
-  
+    * ${data.usage}
 
   ## Contributing
 
-  
+    * ${data.contributors}
 
   ## Tests
+
+
+  ## Questions 
+
+    * ${data.username}
+    * ${data.email}
 
   ${renderLicense}
 
