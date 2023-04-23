@@ -17,7 +17,7 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeReadMeFile(fileName, readMe) {
+function writeReadMeFile(readMe) {
   // const fileName = `README.md`;
   fs.writeFile('README.md', readMe, null, (error) =>
     error ? console.error(error) : console.log("success"));
@@ -70,7 +70,7 @@ function init() {
   ])
   .then ((data) => {
     console.log(data.title, data.description, data.install, data.usage, data.contributors, data.license, data.username, data.email)
-
+    
     writeReadMeFile(generateMD.generateMarkdown(data));
   });
 }
