@@ -4,34 +4,36 @@ const inquirer = require('inquirer');
 const generateMD = require('./utils/generateMarkdown');
 
 function renderLicenseBadge(license) {
+  console.log(license)
   let licenseBadge = ''
   if (license === 'Apache License 2.0') {
-    return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)]`;
+    return `![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)`;
   } else if (license === 'GNU General Public License v3.0') {
-    return `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]`;
+    return `![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)`;
   } else if (license === 'MIT License') {
-    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`;
+    return `![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`;
   } else {
     return licenseBadge;
   }
 }
 
 function renderLicenseLink(license) {
+  console.log(license)
   let licenseLink = ''
   if (license === 'Apache License 2.0') {
     return `
-    ## License
-      [Link to License](https://opensource.org/licenses/Apache-2.0)
+## License
+[Link to License](https://opensource.org/licenses/Apache-2.0)
     `;
   } else if (license === 'GNU General Public License v3.0') {
     return `
-    ## License
-      [Link to License](https://www.gnu.org/licenses/gpl-3.0)
+## License
+[Link to License](https://www.gnu.org/licenses/gpl-3.0)
       `;
   } else if (license === 'MIT License') {
     return `
-    ## License
-      [Link to License](https://opensource.org/licenses/MIT)
+## License
+[Link to License](https://opensource.org/licenses/MIT)
       `;
   } else {
     return licenseLink;
@@ -57,9 +59,9 @@ function generateMarkdown(data ) {
 
   ## Description
 
-    ${renderLicenseBadge(data.license)}
+  ${renderLicenseBadge(data.license)}
 
-    ${data.description}
+  ${data.description}
   
   ## Table of Contents 
     
@@ -70,24 +72,23 @@ function generateMarkdown(data ) {
   
   ## Installation
   
-    ${data.install}
+  ${data.install}
 
   ## Usage
   
-    ${data.usage}
+  ${data.usage}
 
   ## Contributors
 
-    ${data.contributors}
+  ${data.contributors}
 
   ## Tests
 
   ## Questions 
 
-    ${data.username}
-    ${data.email}
-
-  ${renderLicenseLink(data.license)}
+  ${data.username}
+  ${data.email}
+${renderLicenseLink(data.license)}
 
   `;
   
@@ -146,7 +147,7 @@ function init() {
       name: 'contributors'
     },
     {
-      type: 'checkbox',
+      type: 'list',
       message: `${questions[5]}`,
       name: 'license',
       choices: ['None', 'Apache License 2.0', 'GNU General Public License v3.0', 'MIT License']
