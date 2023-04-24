@@ -86,8 +86,9 @@ function generateMarkdown(data ) {
 
   ## Questions 
 
-  ${data.username}
-  ${data.email}
+  My GitHub username: ${data.username}
+
+  Reach out to my email with any questions: ${data.email}
 ${renderLicenseLink(data.license)}
 
   `;
@@ -114,7 +115,7 @@ const questions = [
 // TODO: Create a function to write README file
 function writeReadMeFile(readMe) {
   // const fileName = `README.md`;
-  fs.writeFile('README.md', readMe, null, (error) =>
+  fs.writeFile('sampleREADME.md', readMe, null, (error) =>
     error ? console.error(error) : console.log("success"));
 }
 
