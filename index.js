@@ -3,7 +3,41 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const generateMD = require('./utils/generateMarkdown');
 
+function renderLicenseBadge(license) {
+  let licenseBadge = ''
+  if (license === 'Apache License 2.0') {
+    return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)]`;
+  } else if (license === 'GNU General Public License v3.0') {
+    return `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]`;
+  } else if (license === 'MIT License') {
+    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`;
+  } else {
+    return licenseBadge;
+  }
+}
 
+function renderLicenseLink(license) {
+  let licenseLink = ''
+  if (license === 'Apache License 2.0') {
+    return `
+    ## License
+      [Link to License](https://opensource.org/licenses/Apache-2.0)
+    `;
+  } else if (license === 'GNU General Public License v3.0') {
+    return `
+    ## License
+      [Link to License](https://www.gnu.org/licenses/gpl-3.0)
+      `;
+  } else if (license === 'MIT License') {
+    return `
+    ## License
+      [Link to License](https://opensource.org/licenses/MIT)
+      `;
+  } else {
+    return licenseLink;
+  }
+  // return licenseLink
+}
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 
@@ -17,13 +51,13 @@ const generateMD = require('./utils/generateMarkdown');
 // }
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(data, licenseBadge, licenseLink) {
+function generateMarkdown(data ) {
   let readMe =
   `# ${data.title}
 
   ## Description
 
-    ${licenseBadge}
+    ${renderLicenseBadge(data.license)}
 
     ${data.description}
   
@@ -53,9 +87,10 @@ function generateMarkdown(data, licenseBadge, licenseLink) {
     ${data.username}
     ${data.email}
 
-  ${licenseLink}
+  ${renderLicenseLink(data.license)}
 
   `;
+  
   return readMe;
 }
 
@@ -127,55 +162,21 @@ function init() {
       name: 'email'
     }
   ])
-    .then((data) => {
-      console.log(data.title, data.description, data.install, data.usage, data.contributors, data.license, data.username, data.email)
-      let licenseString = JSON.stringify(data.license[0]);
+  .then((data) => {
+    console.log(data.title, data.description, data.install, data.usage, data.contributors, data.license, data.username, data.email)
+    let licenseString = JSON.stringify(data.license[0]);
 
-      // console.log(licenseString);
-      // const licenseBadge = renderLicenseBadge(licenseString);
-      // console.log(licenseBadge);
-      // // const licenseLink = renderLicenseLink(licenseString);
-      // // console.log(licenseString)
-      // const licenseSection = renderLicenseLink(licenseString);
-      // console.log(licenseSection)
-      writeReadMeFile(generateMarkdown( data, renderLicenseBadge(licenseString), renderLicenseLink(licenseString) ));
-    });
+    // console.log(licenseString);
+    // const licenseBadge = renderLicenseBadge(licenseString);
+    // console.log(licenseBadge);
+    // // const licenseLink = renderLicenseLink(licenseString);
+    // // console.log(licenseString)
+    // const licenseSection = renderLicenseLink(licenseString);
+    // console.log(licenseSection)
+    writeReadMeFile(generateMarkdown( data ));
+  });
 }
 
-function renderLicenseBadge(license) {
-  let licenseBadge = ''
-  if (license === 'Apache License 2.0') {
-    return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)]`;
-  } else if (license === 'GNU General Public License v3.0') {
-    return `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]`;
-  } else if (license === 'MIT License') {
-    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`;
-  } else {
-    return licenseBadge;
-  }
-}
 
-function renderLicenseLink(license) {
-  let licenseLink = ''
-  if (license === 'Apache License 2.0') {
-    return `
-    ## License
-      [Link to License](https://opensource.org/licenses/Apache-2.0)
-    `;
-  } else if (license === 'GNU General Public License v3.0') {
-    return `
-    ## License
-      [Link to License](https://www.gnu.org/licenses/gpl-3.0)
-      `;
-  } else if (license === 'MIT License') {
-    return `
-    ## License
-      [Link to License](https://opensource.org/licenses/MIT)
-      `;
-  } else {
-    return licenseLink;
-  }
-  // return licenseLink
-}
 // Function call to initialize app
 init();
