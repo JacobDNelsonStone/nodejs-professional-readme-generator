@@ -73,7 +73,6 @@ function generateMarkdown(data) {
 
   ## Tests
 
-
   ## Questions 
 
     * ${data.username}
@@ -86,3 +85,4 @@ function generateMarkdown(data) {
 }
 
 module.exports = generateMarkdown;
+module.exports = renderLicenseSection;
