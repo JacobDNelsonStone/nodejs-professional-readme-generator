@@ -48,9 +48,9 @@ function generateMarkdown(data) {
 
   ## Description
 
-    * ${renderLicenseBadge()}
+    ${renderLicenseBadge()}
 
-    * ${data.description}
+    ${data.description}
   
   ## Table of Contents (Optional)
     
@@ -61,22 +61,24 @@ function generateMarkdown(data) {
   
   ## Installation
   
-    * ${data.install}
+    ${data.install}
 
   ## Usage
   
-    * ${data.usage}
+    ${data.usage}
 
   ## Contributing
 
-    * ${data.contributors}
+    ${data.contributors}
 
   ## Tests
 
+    ${data.tests}
+
   ## Questions 
 
-    * ${data.username}
-    * ${data.email}
+    Find me here on GitHub: ${data.username}
+    Email me here: ${data.email}
 
   ${renderLicenseSection()}
 

@@ -109,6 +109,7 @@ const questions = [
   'Please choose one license from this list for your project.',
   'Please provide your GitHub username so people can see your GitHub profile.',
   'Please enter your email address so people can contact you with any questions.',
+  'Please enter any information about tests you have created.'
 
 ];
 
@@ -148,6 +149,11 @@ function init() {
       name: 'contributors'
     },
     {
+      type: 'input',
+      message: `${questions[8]}`,
+      name: 'tests'
+    },
+    {
       type: 'list',
       message: `${questions[5]}`,
       name: 'license',
@@ -165,7 +171,7 @@ function init() {
     }
   ])
   .then((data) => {
-    console.log(data.title, data.description, data.install, data.usage, data.contributors, data.license, data.username, data.email)
+    console.log(data.title, data.description, data.install, data.usage, data.contributors, data.tests, data.license, data.username, data.email)
     let licenseString = JSON.stringify(data.license[0]);
 
     // console.log(licenseString);
